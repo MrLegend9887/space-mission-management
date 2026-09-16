@@ -52,6 +52,18 @@ class Mission:
                 return astronaut
         if not found:
             print(f"No astronaut found with the ID {search_id}.")
+    
+    def display_mission_details(self):
+        print("===== Mission Details =====")
+        print(f"Mission ID       : {self.mission_id}")
+        print(f"Mission Name     : {self.mission_name}")
+        print(f"Launch Date      : {self.launch_date}")
+        print(f"Destination      : {self.destination}")
+        print(f"Status           : {self.status}")
+        print(f"Astronauts:-")
+        for astronaut in self.astronauts:
+            print(f"-{astronaut.astronaut_id} : {astronaut.name}")
+        print("=============================")
 
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -61,3 +73,4 @@ mission1.add_astronaut(astronaut2)
 
 foundcandidate = mission1.find_astronaut_by_id()
 foundcandidate.display_details()
+mission1.display_mission_details()
