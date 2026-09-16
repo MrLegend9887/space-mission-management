@@ -42,6 +42,17 @@ class Mission:
 
     def add_astronaut(self, astronaut):
         self.astronauts.append(astronaut)
+        
+    def remove_astronaut_by_id(self):
+            found = False
+            search_id = input("Enter a valid astronauts ID: ")
+            for astronaut in self.astronauts:
+                if  search_id.lower() == (astronaut.astronaut_id).lower():
+                    found = True 
+                    self.astronauts.remove(astronaut)
+                    break
+            if not found:
+                print(f"No astronaut found with the ID {search_id}.")
 
     def find_astronaut_by_id(self):
         found = False
@@ -65,12 +76,23 @@ class Mission:
             print(f"-{astronaut.astronaut_id} : {astronaut.name}")
         print("=============================")
 
+
+#dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
+
+#dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","Completed")
+
+#adding astronauts to a mission 
 mission1.add_astronaut(astronaut1)
 mission1.add_astronaut(astronaut2)
 
+#finding and displaying candidate
 foundcandidate = mission1.find_astronaut_by_id()
 foundcandidate.display_details()
+
+#testing functions
+mission1.display_mission_details()
+mission1.remove_astronaut_by_id()
 mission1.display_mission_details()
