@@ -1,0 +1,10 @@
+AST001,Neil Armstrong,05-08-1930,USA,180,Pilot
+AST002,Buzz Aldrin,20-01-1930,USA,178,Pilot
+AST003,Michael Collins,31-10-1930,USA,180,Pilot
+AST004,Yuri Gagarin,09-03-1934,USSR,157,Pilot
+AST005,Valentina Tereshkova,06-03-1937,USSR,170,Commander
+AST006,Rakesh Sharma,13-01-1949,India,170,Pilot
+AST007,Kalpana Chawla,17-03-1962,India,165,Mission Specialist
+AST008,Sunita Williams,19-09-1965,USA,173,Commander
+AST009,Sally Ride,26-05-1951,USA,165,Mission Specialist
+AST010,Chris Hadfield,29-08-1959,Canada,180,Commander
