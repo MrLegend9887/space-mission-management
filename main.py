@@ -32,6 +32,9 @@ class Astronaut:
 
 class Mission:
 
+    VALID_STATUSES = ["planned","active","completed"]
+
+    
     def __init__(self, mission_id, mission_name, launch_date, destination, status):
         self.mission_id = mission_id
         self.mission_name = mission_name
@@ -76,23 +79,29 @@ class Mission:
             print(f"-{astronaut.astronaut_id} : {astronaut.name}")
         print("=============================")
 
+    def update_status(self, new_status):
+        new_status = new_status.lower()
 
-#dummy astronauts
+        if new_status in self.VALID_STATUSES:
+            self.status = new_status 
+
+
+# dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
 
-#dummy mission
+# dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","Completed")
 
-#adding astronauts to a mission 
+# adding astronauts to a mission 
 mission1.add_astronaut(astronaut1)
 mission1.add_astronaut(astronaut2)
 
-#finding and displaying candidate
+# finding and displaying candidate
 foundcandidate = mission1.find_astronaut_by_id()
 foundcandidate.display_details()
 
-#testing functions
+# testing functions
 mission1.display_mission_details()
 mission1.remove_astronaut_by_id()
 mission1.display_mission_details()
