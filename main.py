@@ -128,6 +128,20 @@ class MissionManager:
                 return mission
         print(f"No Mission found with the ID {search_id}.")
         
+    def display_all_missions(self):
+        for mission in self.missions:
+            mission.display_mission_details()
+            
+    def remove_mission_by_id(self, search_id):
+        for mission in self.missions:
+            if mission.mission_id.lower() == search_id.lower():
+                for astronaut in mission.astronauts:
+                    astronaut.assigned_mission = None
+                self.missions.remove(mission) 
+                return           
+        print("Enter A Valid Mission ID")
+            
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -141,4 +155,14 @@ mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 mission_manager = MissionManager()
 mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
-mission_manager.find_mission_by_id()
+
+
+mission1.add_astronaut(astronaut1)
+
+print(astronaut1.astronaut_id)
+print(astronaut1.assigned_mission.mission_id)
+
+mission_manager.remove_mission_by_id("MSN001")
+
+print(astronaut1.astronaut_id)
+print(astronaut1.assigned_mission)
