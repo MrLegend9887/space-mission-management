@@ -183,6 +183,13 @@ class MissionManager:
             return
         mission.update_name(new_name)
         
+    def update_mission_launch_date(self, mission_id, new_launch_date):
+        mission = self.find_mission_by_id(mission_id)
+        if mission == None:
+            return
+        mission.update_launch_date(new_launch_date)
+        
+
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -200,3 +207,6 @@ mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
 
 # TEST 
+mission_manager.update_mission_launch_date("MSN001", "20-09-2026")
+mission_manager.find_mission_by_id("MSN001").display_mission_details()
+mission_manager.update_mission_launch_date("MSN001", "99-99-9999")
