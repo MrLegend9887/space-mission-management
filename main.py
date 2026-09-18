@@ -144,13 +144,13 @@ class MissionManager:
         self.missions.append(mission)
         print(f"Added Successfully")
         
-    def find_mission_by_id(self):
+    def find_mission_by_id(self, search_id):
         
-        search_id = input("Enter a valid Mission ID: ")
         for mission in self.missions:
             if  search_id.lower() == (mission.mission_id).lower(): 
                 return mission
         print(f"No Mission found with the ID {search_id}.")
+        return None
         
     def display_all_missions(self):
         for mission in self.missions:
@@ -164,6 +164,13 @@ class MissionManager:
                 self.missions.remove(mission) 
                 return           
         print("Enter A Valid Mission ID")
+        
+    def update_mission_destination(self, mission_id, new_destination):
+        mission = self.find_mission_by_id(mission_id)
+        if mission == None:
+            return
+        mission.update_destination(new_destination)
+        
                 
         
 # dummy astronauts
@@ -175,13 +182,11 @@ astronaut3 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 
+# CLASS CALLING
+mission_manager = MissionManager()
+
+# mission manager
+mission_manager.add_mission(mission1)
+mission_manager.add_mission(mission2)
+
 # TEST 
-
-mission1.update_launch_date("20-06-2027")
-print(mission1.launch_date)
-
-mission1.update_launch_date("31-02-2027")
-print(mission1.launch_date)
-
-mission1.update_launch_date("banana")
-print(mission1.launch_date)
