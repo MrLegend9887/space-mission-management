@@ -34,6 +34,12 @@ class Mission:
 
     VALID_STATUSES = ["planned","active","completed"]
 
+    VALID_TRANSITIONS = {
+    "planned": ["active"],
+    "active": ["completed"],
+    "completed": []
+    }
+
     
     def __init__(self, mission_id, mission_name, launch_date, destination, status):
         self.mission_id = mission_id
@@ -83,15 +89,19 @@ class Mission:
         new_status = new_status.lower()
 
         if new_status in self.VALID_STATUSES:
-            self.status = new_status 
-
+            if new_status in self.VALID_TRANSITIONS[self.status]:
+                self.status = new_status
+            else:
+                print(f"status cannot be changed to {new_status} ")
+        else:
+            print("Invalid Status")
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
 
 # dummy mission
-mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","Completed")
+mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 
 # adding astronauts to a mission 
 mission1.add_astronaut(astronaut1)
@@ -105,3 +115,8 @@ foundcandidate.display_details()
 mission1.display_mission_details()
 mission1.remove_astronaut_by_id()
 mission1.display_mission_details()
+mission1.update_status("active")
+mission1.update_status("completed")
+mission1.update_status("completed")
+mission1.update_status("active")
+mission1.update_status("destroyed")
