@@ -171,7 +171,11 @@ class MissionManager:
             return
         mission.update_destination(new_destination)
         
-                
+    def update_mission_status(self, mission_id, new_status):
+        mission = self.find_mission_by_id(mission_id)
+        if mission == None:
+            return
+        mission.update_status(new_status)
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
