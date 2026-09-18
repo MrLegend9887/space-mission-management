@@ -107,7 +107,21 @@ class Mission:
         else:
             print("Invalid Status")
 
-class MissionManager:
+    def update_name(self, new_name):
+        new_name = new_name.strip()
+        if new_name == "":
+            print("Enter A Valid Mission Name")
+            return
+        self.mission_name = new_name
+
+    def update_destination(self, new_destination):
+        new_destination = new_destination.strip()
+        if new_destination == "":
+            print("Enter A Valid Destination Name")
+            return
+        self.destination = new_destination      
+
+class MissionManager:   
     
     def __init__(self):
         self.missions = []
@@ -140,7 +154,7 @@ class MissionManager:
                 self.missions.remove(mission) 
                 return           
         print("Enter A Valid Mission ID")
-            
+                
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -152,17 +166,8 @@ mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 
 # TEST 
-mission_manager = MissionManager()
-mission_manager.add_mission(mission1)
-mission_manager.add_mission(mission2)
+mission1.update_name("Artemis II")
+mission1.update_destination("Moon")
 
-
-mission1.add_astronaut(astronaut1)
-
-print(astronaut1.astronaut_id)
-print(astronaut1.assigned_mission.mission_id)
-
-mission_manager.remove_mission_by_id("MSN001")
-
-print(astronaut1.astronaut_id)
-print(astronaut1.assigned_mission)
+print(mission1.mission_name)
+print(mission1.destination)
