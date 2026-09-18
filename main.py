@@ -120,6 +120,14 @@ class MissionManager:
         self.missions.append(mission)
         print(f"Added Successfully")
         
+    def find_mission_by_id(self):
+        
+        search_id = input("Enter a valid Mission ID: ")
+        for mission in self.missions:
+            if  search_id.lower() == (mission.mission_id).lower(): 
+                return mission
+        print(f"No Mission found with the ID {search_id}.")
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -131,12 +139,6 @@ mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 
 # TEST 
 mission_manager = MissionManager()
-
-
-
 mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
-
-print(len(mission_manager.missions))
-
-mission_manager.add_mission(mission1)
+mission_manager.find_mission_by_id()
