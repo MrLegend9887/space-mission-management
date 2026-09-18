@@ -7,6 +7,7 @@ class Astronaut:
         self.country = country
         self.height = height
         self.specialization = specialization
+        self.assigned_mission = None
     
     def display_details(self):
         print("===== Astronaut Details =====")
@@ -47,6 +48,9 @@ class Mission:
         self.astronauts = []
 
     def add_astronaut(self, astronaut):
+        if astronaut.assigned_mission is not None:
+            print(f"Astronaut is already assigned to {astronaut.assigned_mission.mission_id}")
+            return
         for astro in self.astronauts:
             if  astronaut.astronaut_id == astro.astronaut_id:
                 print("Cannot Add Duplicates")
@@ -55,7 +59,8 @@ class Mission:
             print(f"Maximum Capacity reached for {self.mission_name}")
         else:
             self.astronauts.append(astronaut)
-            print(f"Added Succesfully")
+            astronaut.assigned_mission = self
+            print(f"Added Successfully")
 
     def remove_astronaut_by_id(self):
             found = False
@@ -64,6 +69,7 @@ class Mission:
                 if  search_id.lower() == (astronaut.astronaut_id).lower():
                     found = True 
                     self.astronauts.remove(astronaut)
+                    astronaut.assigned_mission = None
                     break
             if not found:
                 print(f"No astronaut found with the ID {search_id}.")
@@ -108,10 +114,18 @@ astronaut3 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 
 # dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
+mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 
-# adding astronauts to a mission 
+# TEST 
+
 mission1.add_astronaut(astronaut1)
-mission1.add_astronaut(astronaut2)
+print(astronaut1.assigned_mission.mission_id)
 
+mission2.add_astronaut(astronaut1)
+print(astronaut1.assigned_mission.mission_id)
 
-mission1.add_astronaut(astronaut3)
+mission1.remove_astronaut_by_id()
+print(astronaut1.assigned_mission)
+
+mission2.add_astronaut(astronaut1)
+print(astronaut1.assigned_mission.mission_id)
