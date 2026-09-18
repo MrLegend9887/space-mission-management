@@ -50,7 +50,19 @@ class Mission:
         self.astronauts = []
 
     def add_astronaut(self, astronaut):
-        self.astronauts.append(astronaut)
+        found = False
+        for astro in self.astronauts:
+            if  astronaut.astronaut_id == (astro.astronaut_id):
+                found = True 
+                print("Cannot Add Duplicates")
+        if not found:
+            self.astronauts.append(astronaut)
+            print(f"Added Succesfully")
+        
+        # if astronaut in self.astronauts:
+        #     print("Astronaut Already Exists")
+        # else:
+        #     self.astronauts.append(astronaut)
         
     def remove_astronaut_by_id(self):
             found = False
@@ -99,6 +111,7 @@ class Mission:
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
+astronaut3 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 
 # dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
@@ -107,16 +120,5 @@ mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission1.add_astronaut(astronaut1)
 mission1.add_astronaut(astronaut2)
 
-# finding and displaying candidate
-foundcandidate = mission1.find_astronaut_by_id()
-foundcandidate.display_details()
 
-# testing functions
-mission1.display_mission_details()
-mission1.remove_astronaut_by_id()
-mission1.display_mission_details()
-mission1.update_status("active")
-mission1.update_status("completed")
-mission1.update_status("completed")
-mission1.update_status("active")
-mission1.update_status("destroyed")
+mission1.add_astronaut(astronaut3)
