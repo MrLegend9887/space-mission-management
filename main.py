@@ -34,11 +34,8 @@ class Mission:
 
     VALID_STATUSES = ["planned","active","completed"]
 
-    VALID_TRANSITIONS = {
-    "planned": ["active"],
-    "active": ["completed"],
-    "completed": []
-    }
+    VALID_TRANSITIONS = {"planned": ["active"], "active": ["completed"], "completed": [] }
+    MAX_ASTRONAUTS = 5
 
     
     def __init__(self, mission_id, mission_name, launch_date, destination, status):
@@ -50,20 +47,16 @@ class Mission:
         self.astronauts = []
 
     def add_astronaut(self, astronaut):
-        found = False
         for astro in self.astronauts:
-            if  astronaut.astronaut_id == (astro.astronaut_id):
-                found = True 
+            if  astronaut.astronaut_id == astro.astronaut_id:
                 print("Cannot Add Duplicates")
-        if not found:
+                return
+        if len(self.astronauts) >= self.MAX_ASTRONAUTS:
+            print(f"Maximum Capacity reached for {self.mission_name}")
+        else:
             self.astronauts.append(astronaut)
             print(f"Added Succesfully")
-        
-        # if astronaut in self.astronauts:
-        #     print("Astronaut Already Exists")
-        # else:
-        #     self.astronauts.append(astronaut)
-        
+
     def remove_astronaut_by_id(self):
             found = False
             search_id = input("Enter a valid astronauts ID: ")
