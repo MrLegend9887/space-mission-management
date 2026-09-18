@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Astronaut:
 
     def __init__(self, astronaut_id, name, dob, country, height, specialization):
@@ -121,6 +123,14 @@ class Mission:
             return
         self.destination = new_destination      
 
+    def update_launch_date(self, new_launch_date):
+        try:
+            datetime.strptime(new_launch_date, "%d-%m-%Y")
+            self.launch_date = new_launch_date
+        except ValueError:
+            print("Invalid Date")
+        
+
 class MissionManager:   
     
     def __init__(self):
@@ -166,8 +176,12 @@ mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 
 # TEST 
-mission1.update_name("Artemis II")
-mission1.update_destination("Moon")
 
-print(mission1.mission_name)
-print(mission1.destination)
+mission1.update_launch_date("20-06-2027")
+print(mission1.launch_date)
+
+mission1.update_launch_date("31-02-2027")
+print(mission1.launch_date)
+
+mission1.update_launch_date("banana")
+print(mission1.launch_date)
