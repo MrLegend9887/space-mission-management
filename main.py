@@ -278,6 +278,15 @@ class MissionManager:
             and self.get_available_seats(mission_id) > 0
             )
         
+    def assign_astronaut_to_mission(self, astronaut_id, mission_id):
+        can_assign = self.can_assign_astronaut(astronaut_id,mission_id)
+        if can_assign:
+            astronaut = self.find_astronaut_by_id(astronaut_id)
+            mission = self.find_mission_by_id(mission_id)
+            mission.add_astronaut(astronaut)
+        else:
+            return
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -299,5 +308,8 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.is_mission_ready("MSN001"))
-print(mission_manager.is_mission_ready("MSN999"))  
+mission_manager.assign_astronaut_to_mission("AST002", "MSN001")
+print(mission_manager.get_astronaut_count_by_mission("MSN001"))
+astronaut = mission_manager.find_astronaut_by_id("AST002")
+print(astronaut.assigned_mission.mission_id)
+mission_manager.assign_astronaut_to_mission("AST002", "MSN001")
