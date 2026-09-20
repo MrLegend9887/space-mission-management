@@ -38,6 +38,7 @@ class Mission:
     VALID_STATUSES = ["planned","active","completed"]
 
     VALID_TRANSITIONS = {"planned": ["active"], "active": ["completed"], "completed": [] }
+    
     MAX_ASTRONAUTS = 5
 
     
@@ -252,6 +253,15 @@ class MissionManager:
         else:
             return
         
+    def get_available_seats(self, mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None:
+            available_seats = mission.MAX_ASTRONAUTS - len(mission.astronauts)
+            return available_seats
+        else:
+            return
+        
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -273,9 +283,5 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-mission = mission_manager.get_astronaut_mission("AST001")
-print(mission.mission_id if mission else "No mission")
-mission = mission_manager.get_astronaut_mission("AST002")
-print(mission.mission_id if mission else "No mission")
-mission = mission_manager.get_astronaut_mission("AST999")
-print(mission.mission_id if mission else "No mission")
+print(mission_manager.get_available_seats("MSN001"))
+print(mission_manager.get_available_seats("MSN999"))
