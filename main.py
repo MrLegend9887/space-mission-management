@@ -205,6 +205,9 @@ class MissionManager:
     
     def get_mission_count(self):
         return len(self.missions)
+    
+    def get_mission_count_by_status(self, status):
+        return len(self.find_missions_by_status(status))
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
