@@ -209,6 +209,17 @@ class MissionManager:
     def get_mission_count_by_status(self, status):
         return len(self.find_missions_by_status(status))
 
+    def get_mission_summary(self):
+        
+        summary = {
+            "total" : self.get_mission_count(),
+            "planned" : self.get_mission_count_by_status("planned"),
+            "active" : self.get_mission_count_by_status("active"),
+            "completed" : self.get_mission_count_by_status("completed")
+        }
+        return summary 
+        
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -228,4 +239,5 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.get_mission_count())
+summary = mission_manager.get_mission_summary()
+print(summary)
