@@ -243,7 +243,15 @@ class MissionManager:
             return mission
         else:
             return
-
+        
+    def get_mission_crew(self, mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None:
+            crew = mission.astronauts 
+            return crew
+        else:
+            return
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
