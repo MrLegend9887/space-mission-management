@@ -65,17 +65,13 @@ class Mission:
             astronaut.assigned_mission = self
             print(f"Added Successfully")
 
-    def remove_astronaut_by_id(self):
-            found = False
-            search_id = input("Enter a valid astronauts ID: ")
+    def remove_astronaut_by_id(self,search_id):
             for astronaut in self.astronauts:
                 if  search_id.lower() == (astronaut.astronaut_id).lower():
-                    found = True 
                     self.astronauts.remove(astronaut)
                     astronaut.assigned_mission = None
-                    break
-            if not found:
-                print(f"No astronaut found with the ID {search_id}.")
+                    return
+            return None
 
     def find_astronaut_by_id(self, search_id):
         for astronaut in self.astronauts:
@@ -287,10 +283,18 @@ class MissionManager:
         else:
             return
         
+    def unassign_astronaut_from_mission(self, astronaut_id, mission_id):
+        astronaut = self.find_astronaut_by_id(astronaut_id)
+        mission = self.find_mission_by_id(mission_id)
+        if astronaut is not None and mission is not None and astronaut in mission.astronauts:
+            mission.remove_astronaut_by_id(astronaut_id)
+            return True
+        else:
+            return False
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
-astronaut3 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 
 # dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
@@ -307,9 +311,4 @@ mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
-# TEST 
-mission_manager.assign_astronaut_to_mission("AST002", "MSN001")
-print(mission_manager.get_astronaut_count_by_mission("MSN001"))
-astronaut = mission_manager.find_astronaut_by_id("AST002")
-print(astronaut.assigned_mission.mission_id)
-mission_manager.assign_astronaut_to_mission("AST002", "MSN001")
+# TEST
