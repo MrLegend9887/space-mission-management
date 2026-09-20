@@ -235,6 +235,14 @@ class MissionManager:
             if astronaut is not None:
                 return astronaut
         print(f"No astronaut found with the ID {astronaut_id}.")
+        
+    def get_astronaut_mission(self, astronaut_id):
+        astronaut = self.find_astronaut_by_id(astronaut_id)
+        if astronaut is not None:
+            mission = astronaut.assigned_mission
+            return mission
+        else:
+            return
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -257,9 +265,9 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-astronaut = mission_manager.find_astronaut_by_id("AST001")
-print(astronaut.name if astronaut else "Not found")
-astronaut = mission_manager.find_astronaut_by_id("ast001")
-print(astronaut.name if astronaut else "Not found")
-astronaut = mission_manager.find_astronaut_by_id("AST999")
-print(astronaut)
+mission = mission_manager.get_astronaut_mission("AST001")
+print(mission.mission_id if mission else "No mission")
+mission = mission_manager.get_astronaut_mission("AST002")
+print(mission.mission_id if mission else "No mission")
+mission = mission_manager.get_astronaut_mission("AST999")
+print(mission.mission_id if mission else "No mission")
