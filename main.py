@@ -268,6 +268,15 @@ class MissionManager:
         else:
             return False 
         
+    def can_assign_astronaut(self, astronaut_id, mission_id):
+        astronaut = self.find_astronaut_by_id(astronaut_id)
+        mission = self.find_mission_by_id(mission_id)
+        return (
+            astronaut is not None
+            and mission is not None
+            and astronaut.assigned_mission is None
+            and self.get_available_seats(mission_id) > 0
+            )
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
