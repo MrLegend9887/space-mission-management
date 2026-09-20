@@ -76,9 +76,8 @@ class Mission:
             if not found:
                 print(f"No astronaut found with the ID {search_id}.")
 
-    def find_astronaut_by_id(self):
+    def find_astronaut_by_id(self, search_id):
         found = False
-        search_id = input("Enter a valid astronauts ID: ")
         for astronaut in self.astronauts:
             if  search_id.lower() == (astronaut.astronaut_id).lower():
                 found = True 
@@ -232,6 +231,12 @@ class MissionManager:
             return count
         else:
             return
+        
+    def find_astronaut_by_id(self, astronaut_id):
+        for mission in self.missions:
+            astronaut = mission.find_astronaut_by_id(astronaut_id)
+            if astronaut is not None:
+                return astronaut
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -254,5 +259,9 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.get_astronaut_count_by_mission("MSN001"))
-print(mission_manager.get_astronaut_count_by_mission("MSN999"))
+astronaut = mission_manager.find_astronaut_by_id("AST001")
+print(astronaut.name if astronaut else "Not found")
+astronaut = mission_manager.find_astronaut_by_id("ast001")
+print(astronaut.name if astronaut else "Not found")
+astronaut = mission_manager.find_astronaut_by_id("AST999")
+print(astronaut)
