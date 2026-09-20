@@ -261,6 +261,13 @@ class MissionManager:
         else:
             return
         
+    def is_mission_ready(self, mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None and mission.status == "planned" and len(mission.astronauts) > 0:
+            return True
+        else:
+            return False 
+        
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -283,5 +290,5 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.get_available_seats("MSN001"))
-print(mission_manager.get_available_seats("MSN999"))
+print(mission_manager.is_mission_ready("MSN001"))
+print(mission_manager.is_mission_ready("MSN999"))  
