@@ -224,8 +224,15 @@ class MissionManager:
         for mission in self.missions:
             count += len(mission.astronauts)
         return count
-        
-        
+    
+    def get_astronaut_count_by_mission(self, mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None:
+            count = len(mission.astronauts)
+            return count
+        else:
+            return
+
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -236,6 +243,8 @@ mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
 mission3 = Mission("MSN003","Mission Mangal","12-08-2025","Mars","planned")
 
+mission1.add_astronaut(astronaut1)
+mission1.add_astronaut(astronaut2)
 # CLASS CALLING
 mission_manager = MissionManager()
 
@@ -245,4 +254,5 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.get_total_astronauts())
+print(mission_manager.get_astronaut_count_by_mission("MSN001"))
+print(mission_manager.get_astronaut_count_by_mission("MSN999"))
