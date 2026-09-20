@@ -187,8 +187,14 @@ class MissionManager:
         mission = self.find_mission_by_id(mission_id)
         if mission == None:
             return
-        mission.update_launch_date(new_launch_date)
+        mission.update_launch_date(new_launch_date)        
         
+    def find_mission_by_destination(self, destination):
+        found_mission = []
+        for mission in self.missions:
+            if mission.destination.lower() == destination.lower():
+                found_mission.append(mission)
+        return found_mission
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -198,6 +204,7 @@ astronaut3 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 # dummy mission
 mission1 = Mission("MSN001","Mission Mangal","12-08-2025","Mars","planned")
 mission2 = Mission("MSN002","Lunar Gateway","15-06-2027","Moon","planned")
+mission3 = Mission("MSN003","Mission Mangal","12-08-2025","Mars","planned")
 
 # CLASS CALLING
 mission_manager = MissionManager()
@@ -205,8 +212,7 @@ mission_manager = MissionManager()
 # mission manager
 mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
+mission_manager.add_mission(mission3)
 
 # TEST 
-mission_manager.update_mission_launch_date("MSN001", "20-09-2026")
-mission_manager.find_mission_by_id("MSN001").display_mission_details()
-mission_manager.update_mission_launch_date("MSN001", "99-99-9999")
+print(mission_manager.find_mission_by_destination("Mars"))
