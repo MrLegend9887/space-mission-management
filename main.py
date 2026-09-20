@@ -218,6 +218,12 @@ class MissionManager:
             "completed" : self.get_mission_count_by_status("completed")
         }
         return summary 
+    
+    def get_total_astronauts(self):
+        count = 0
+        for mission in self.missions:
+            count += len(mission.astronauts)
+        return count
         
         
 # dummy astronauts
@@ -239,5 +245,4 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-summary = mission_manager.get_mission_summary()
-print(summary)
+print(mission_manager.get_total_astronauts())
