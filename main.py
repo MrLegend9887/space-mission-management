@@ -189,12 +189,22 @@ class MissionManager:
             return
         mission.update_launch_date(new_launch_date)        
         
-    def find_mission_by_destination(self, destination):
+    def find_missions_by_destination(self, destination):
         found_mission = []
         for mission in self.missions:
             if mission.destination.lower() == destination.lower():
                 found_mission.append(mission)
         return found_mission
+    
+    def find_missions_by_status(self, status):
+        found_mission = []
+        for mission in self.missions:
+            if mission.status.lower() == status.lower():
+                found_mission.append(mission)
+        return found_mission
+    
+    def get_mission_count(self):
+        return len(self.missions)
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -215,4 +225,4 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST 
-print(mission_manager.find_mission_by_destination("Mars"))
+print(mission_manager.get_mission_count())
