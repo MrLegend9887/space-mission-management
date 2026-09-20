@@ -77,13 +77,10 @@ class Mission:
                 print(f"No astronaut found with the ID {search_id}.")
 
     def find_astronaut_by_id(self, search_id):
-        found = False
         for astronaut in self.astronauts:
             if  search_id.lower() == (astronaut.astronaut_id).lower():
-                found = True 
                 return astronaut
-        if not found:
-            print(f"No astronaut found with the ID {search_id}.")
+        return None
     
     def display_mission_details(self):
         print("===== Mission Details =====")
@@ -237,6 +234,7 @@ class MissionManager:
             astronaut = mission.find_astronaut_by_id(astronaut_id)
             if astronaut is not None:
                 return astronaut
+        print(f"No astronaut found with the ID {astronaut_id}.")
 
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
