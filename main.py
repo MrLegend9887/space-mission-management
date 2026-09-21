@@ -128,6 +128,7 @@ class MissionManager:
     
     def __init__(self):
         self.missions = []
+        self.astronauts = []
 
     def add_mission(self, mission):
         for miss in self.missions:
@@ -361,6 +362,13 @@ class MissionManager:
             "completed_missions" : summary["completed"],
             "total_astronauts" : self.get_total_astronauts()
         }
+        
+    def register_astronaut(self, astronaut):
+        for astro in self.astronauts:
+            if  astronaut.astronaut_id == astro.astronaut_id:
+                return False
+        self.astronauts.append(astronaut)
+        return True
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
