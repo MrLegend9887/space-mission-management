@@ -331,6 +331,21 @@ class MissionManager:
             all_missions.append(self.get_mission_report(mission.mission_id))
         return all_missions
         
+    def get_mission_crew_report(self, mission_id):
+        astronauts = self.get_mission_crew(mission_id)
+        all_astronauts = []
+        if astronauts is not None:
+            for astronaut in astronauts:
+                report = {"astronaut_id" : astronaut.astronaut_id,
+                        "name": astronaut.name,
+                        "country": astronaut.country,
+                        "specialization": astronaut.specialization, 
+                        }
+                all_astronauts.append(report)
+            return all_astronauts
+        return None
+        
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -351,6 +366,5 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST
-reports = mission_manager.get_missions_by_destination_report("Mars")
-print(reports)
-print(mission_manager.get_missions_by_destination_report("Jupiter"))
+print(mission_manager.get_mission_crew_report("MSN001"))
+print(mission_manager.get_mission_crew_report("MSN999"))
