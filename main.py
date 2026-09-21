@@ -228,11 +228,10 @@ class MissionManager:
             return
         
     def find_astronaut_by_id(self, astronaut_id):
-        for mission in self.missions:
-            astronaut = mission.find_astronaut_by_id(astronaut_id)
-            if astronaut is not None:
+        for astronaut in self.astronauts:
+            if astronaut.astronaut_id.lower() == astronaut_id.lower():
                 return astronaut
-        print(f"No astronaut found with the ID {astronaut_id}.")
+        return None
         
     def get_astronaut_mission(self, astronaut_id):
         astronaut = self.find_astronaut_by_id(astronaut_id)
@@ -388,6 +387,10 @@ mission_manager = MissionManager()
 mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
+mission_manager.register_astronaut(astronaut1)
+mission_manager.register_astronaut(astronaut2)
 
 # TEST
-print(mission_manager.get_mission_dashboard())
+print(mission_manager.find_astronaut_by_id("AST001"))
+print(mission_manager.find_astronaut_by_id("ast001"))
+print(mission_manager.find_astronaut_by_id("AST999"))
