@@ -352,6 +352,15 @@ class MissionManager:
             all_missions.append(self.get_mission_report(mission.mission_id))
         return all_missions
         
+    def get_mission_dashboard(self):
+        summary = self.get_mission_summary()
+        return{
+            "total_missions" : summary["total"],
+            "planned_missions" : summary["planned"],
+            "active_missions" : summary["active"],
+            "completed_missions" : summary["completed"],
+            "total_astronauts" : self.get_total_astronauts()
+        }
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -373,5 +382,4 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST
-print(mission_manager.get_mission_crew_report("MSN001"))
-print(mission_manager.get_mission_crew_report("MSN999"))
+print(mission_manager.get_mission_dashboard())
