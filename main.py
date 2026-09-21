@@ -324,6 +324,12 @@ class MissionManager:
         else:
             return None
         
+    def get_missions_by_destination_report(self, destination):
+        missions = self.find_missions_by_destination(destination)
+        all_missions = []
+        for mission in missions:
+            all_missions.append(self.get_mission_report(mission.mission_id))
+        return all_missions
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -345,5 +351,6 @@ mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 
 # TEST
-report = mission_manager.get_mission_report("MSN001")
-print(report)
+reports = mission_manager.get_missions_by_destination_report("Mars")
+print(reports)
+print(mission_manager.get_missions_by_destination_report("Jupiter"))
