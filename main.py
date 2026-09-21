@@ -269,7 +269,7 @@ class MissionManager:
         return (
             astronaut is not None
             and mission is not None
-            and astronaut.assigned_mission is None
+            and self.is_astronaut_available(astronaut_id)
             and self.get_available_seats(mission_id) > 0
             )
         
