@@ -301,6 +301,12 @@ class MissionManager:
         else:
             return False
         
+    def get_mission_occupancy(self,mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None:
+            return len(mission.astronauts) / mission.MAX_ASTRONAUTS * 100
+        else:
+            return None
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
