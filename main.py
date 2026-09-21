@@ -345,6 +345,13 @@ class MissionManager:
             return all_astronauts
         return None
         
+    def get_mission_status_report(self, status):
+        missions = self.find_missions_by_status(status)
+        all_missions = []
+        for mission in missions:
+            all_missions.append(self.get_mission_report(mission.mission_id))
+        return all_missions
+        
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
