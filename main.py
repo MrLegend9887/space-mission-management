@@ -236,10 +236,9 @@ class MissionManager:
     def get_astronaut_mission(self, astronaut_id):
         astronaut = self.find_astronaut_by_id(astronaut_id)
         if astronaut is not None:
-            mission = astronaut.assigned_mission
-            return mission
+            return astronaut.assigned_mission
         else:
-            return
+            return None
         
     def get_mission_crew(self, mission_id):
         mission = self.find_mission_by_id(mission_id)
