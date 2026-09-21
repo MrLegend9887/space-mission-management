@@ -292,6 +292,15 @@ class MissionManager:
         else:
             return False
         
+    def is_mission_full(self, mission_id):
+        available_seat = self.get_available_seats(mission_id)
+        if available_seat is not None and available_seat == 0:
+            return True
+        elif available_seat is None:
+            return None
+        else:
+            return False
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
