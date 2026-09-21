@@ -368,6 +368,15 @@ class MissionManager:
         self.astronauts.append(astronaut)
         return True
         
+    def is_astronaut_available(self, astronaut_id):
+        astronaut = self.find_astronaut_by_id(astronaut_id)
+        if astronaut is None:
+            return False
+        elif astronaut.assigned_mission is None:
+            return True
+        else:
+            return False  
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -387,9 +396,7 @@ mission_manager.add_mission(mission1)
 mission_manager.add_mission(mission2)
 mission_manager.add_mission(mission3)
 mission_manager.register_astronaut(astronaut1)
-mission_manager.register_astronaut(astronaut2)
 
 # TEST
-print(mission_manager.find_astronaut_by_id("AST001"))
-print(mission_manager.find_astronaut_by_id("ast001"))
-print(mission_manager.find_astronaut_by_id("AST999"))
+print(mission_manager.is_astronaut_available("AST001"))
+print(mission_manager.is_astronaut_available("AST999"))
