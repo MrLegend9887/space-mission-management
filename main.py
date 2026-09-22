@@ -378,6 +378,22 @@ class MissionManager:
         else:
             return False  
         
+    def get_astronaut_report(self, astronaut_id):
+        astronaut = self.find_astronaut_by_id(astronaut_id)
+        if astronaut is not None:
+            if astronaut.assigned_mission is not None:
+                assigned_mission = astronaut.assigned_mission.mission_id
+            else :
+                assigned_mission = None
+            return{
+                "astronaut_id" : astronaut.astronaut_id,
+                "name" : astronaut.name,
+                "country" : astronaut.country,
+                "specialization" : astronaut.specialization,
+                "assigned_mission" : assigned_mission,
+            }
+        return None
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
@@ -399,5 +415,7 @@ mission_manager.add_mission(mission3)
 mission_manager.register_astronaut(astronaut1)
 
 # TEST
-print(mission_manager.is_astronaut_available("AST001"))
-print(mission_manager.is_astronaut_available("AST999"))
+print(mission_manager.get_astronaut_report("AST001"))
+mission_manager.unassign_astronaut_from_mission("AST001","MSN001")
+print(mission_manager.get_astronaut_report("AST001"))
+print(mission_manager.get_astronaut_report("AST999"))
