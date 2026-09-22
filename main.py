@@ -413,6 +413,13 @@ class MissionManager:
             if not self.is_astronaut_available(astronaut.astronaut_id):
                 all_astronauts.append(self.get_astronaut_report(astronaut.astronaut_id))
         return all_astronauts
+    
+    def get_astronaut_dashboard(self):
+        return{
+    "total_astronauts": len(self.get_all_astronaut_reports()),
+    "available_astronauts": len(self.get_available_astronaut_reports()),
+    "assigned_astronauts": len(self.get_assigned_astronaut_reports())
+        }
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
@@ -435,7 +442,4 @@ mission_manager.add_mission(mission3)
 mission_manager.register_astronaut(astronaut1)
 
 # TEST
-print(mission_manager.get_astronaut_report("AST001"))
-mission_manager.unassign_astronaut_from_mission("AST001","MSN001")
-print(mission_manager.get_astronaut_report("AST001"))
-print(mission_manager.get_astronaut_report("AST999"))
+print(mission_manager.get_astronaut_dashboard())
