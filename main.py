@@ -399,6 +399,13 @@ class MissionManager:
         for astronaut in self.astronauts:
             all_astronauts.append(self.get_astronaut_report(astronaut.astronaut_id))
         return all_astronauts
+    
+    def get_available_astronaut_reports(self):
+        all_astronauts = []
+        for astronaut in self.astronauts:
+            if self.is_astronaut_available(astronaut.astronaut_id):
+                all_astronauts.append(self.get_astronaut_report(astronaut.astronaut_id))
+        return all_astronauts
             
         
 # dummy astronauts
