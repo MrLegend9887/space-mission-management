@@ -393,6 +393,13 @@ class MissionManager:
                 "assigned_mission" : assigned_mission,
             }
         return None
+    
+    def get_all_astronaut_reports(self):
+        all_astronauts = []
+        for astronaut in self.astronauts:
+            all_astronauts.append(self.get_astronaut_report(astronaut.astronaut_id))
+        return all_astronauts
+            
         
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
