@@ -274,13 +274,14 @@ class MissionManager:
             )
         
     def assign_astronaut_to_mission(self, astronaut_id, mission_id):
-        can_assign = self.can_assign_astronaut(astronaut_id,mission_id)
+        can_assign = self.can_assign_astronaut(astronaut_id, mission_id)
         if can_assign:
             astronaut = self.find_astronaut_by_id(astronaut_id)
             mission = self.find_mission_by_id(mission_id)
             mission.add_astronaut(astronaut)
+            return True
         else:
-            return
+            return False
         
     def unassign_astronaut_from_mission(self, astronaut_id, mission_id):
         astronaut = self.find_astronaut_by_id(astronaut_id)
