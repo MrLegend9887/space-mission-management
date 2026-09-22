@@ -421,6 +421,21 @@ class MissionManager:
     "assigned_astronauts": len(self.get_assigned_astronaut_reports())
         }
         
+    def get_mission_capacity_report(self, mission_id):
+        mission = self.find_mission_by_id(mission_id)
+        if mission is not None:
+            return{
+                "mission_id": mission_id,
+                "mission_name": mission.mission_name,
+                "capacity": mission.MAX_ASTRONAUTS,
+                "occupied_seats": self.get_astronaut_count_by_mission(mission_id),
+                "available_seats": self.get_available_seats(mission_id),
+                "occupancy": self.get_mission_occupancy(mission_id),
+                "is_full": self.is_mission_full(mission_id)
+            }
+        else:
+            return None
+        
 # dummy astronauts
 astronaut1 = Astronaut("AST001","Neil Armstrong","05-08-1930","USA",180,"Pilot")
 astronaut2 = Astronaut("AST002","Buzz Aldrin","20-01-1930","USA",178,"Pilot")
